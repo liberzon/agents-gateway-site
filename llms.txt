@@ -1,0 +1,47 @@
+# Agents Gateway
+
+> Production FastAPI gateway for AI agents, built on top of [Agno](https://github.com/agno-ai/agno). MIT-licensed. Includes supervisor/worker execution, agent teams, prompt versioning, OAuth toolkits (Calendar, Email, Contacts, Drive — Google and Microsoft), per-tenant knowledge base on Qdrant, and one-click deploy to Render, Railway, and Koyeb. Image: `ghcr.io/liberzon/agents-gateway:latest`.
+
+## Site
+- [Landing page](https://agents-gateway.dev/): tagline, features, deploy buttons, quickstart
+- [Docs](https://agents-gateway.dev/docs/): architecture diagram, API reference, configuration, toolkits, supervisor platform, database schema, observability
+- [Deploy guide](https://agents-gateway.dev/deploy/): one-click platforms, Kubernetes, cloud-specific manifests, smoke test, operational notes
+
+## Detailed reference (auto-synced from agents-gateway-docs)
+- [Overview](https://agents-gateway.dev/docs/overview/): architecture and key concepts
+- [Quickstart](https://agents-gateway.dev/docs/quickstart/): setup and first API call
+- [Authentication](https://agents-gateway.dev/docs/authentication/): API keys, admin auth, dev mode
+- [Configuration](https://agents-gateway.dev/docs/configuration/): environment variables
+- [API: Agents](https://agents-gateway.dev/docs/api-agents/): agent CRUD and chat endpoints
+- [API: Teams](https://agents-gateway.dev/docs/api-teams/): team coordinate + supervisor modes
+- [API: Prompts](https://agents-gateway.dev/docs/api-prompts/): versioned prompt templates
+- [API: Knowledge](https://agents-gateway.dev/docs/api-knowledge/): tenant + collection-level knowledge
+- [API: Tokens](https://agents-gateway.dev/docs/api-tokens/): OAuth token storage with auto-refresh
+- [API: Skills](https://agents-gateway.dev/docs/api-skills/): reusable skill definitions
+- [API: Engines](https://agents-gateway.dev/docs/api-engines/): supervisor execution engine registry
+- [API: Targets](https://agents-gateway.dev/docs/api-targets/): supervisor run target registry
+- [API: Approvals](https://agents-gateway.dev/docs/api-approvals/): HITL approval flow
+- [API: Admin](https://agents-gateway.dev/docs/api-admin/): cache, API keys, background tasks
+- [Supervisor platform](https://agents-gateway.dev/docs/supervisor-platform/): architecture, classification, worker types
+- [Agent packs](https://agents-gateway.dev/docs/agent-packs/): YAML pack format, CLI
+- [Remote agent](https://agents-gateway.dev/docs/remote-agent/): Docker/K8s container execution
+- [Toolkits](https://agents-gateway.dev/docs/toolkits/): Calendar, Email, Drive, ClaudeCode, ManagedAgents
+- [Models reference](https://agents-gateway.dev/docs/models-reference/): Pydantic request/response models
+- [Database schema](https://agents-gateway.dev/docs/database-schema/): all tables
+- [LLM models](https://agents-gateway.dev/docs/llm-models/): supported OpenAI, Gemini, Claude variants
+- [Deployment](https://agents-gateway.dev/docs/deployment/): docker-compose, production setup
+- [Development](https://agents-gateway.dev/docs/development/): dev setup, validation, testing
+
+## Source
+- [Repository (app)](https://github.com/liberzon/agents-gateway): FastAPI + Agno service, Python 3.11+, MIT
+- [Repository (deploy)](https://github.com/liberzon/agents-gateway-deploy): one-click platform configs, K8s manifests, build pipeline
+- [Container image](https://github.com/liberzon/agents-gateway/pkgs/container/agents-gateway): multi-arch (linux/amd64, linux/arm64) at `ghcr.io/liberzon/agents-gateway`
+
+## Reference
+- [Issue tracker](https://github.com/liberzon/agents-gateway/issues): bug reports and feature requests
+- [License](https://github.com/liberzon/agents-gateway/blob/main/LICENSE): MIT
+- [Deploy test plan](https://github.com/liberzon/agents-gateway-deploy/blob/main/DEPLOY_TEST_PLAN.md): per-platform smoke-test playbook
+- [Agno](https://github.com/agno-ai/agno): the underlying agent framework
+
+## Optional
+- [llms-full.txt](https://agents-gateway.dev/llms-full.txt): full content inlined for LLM context-window ingestion

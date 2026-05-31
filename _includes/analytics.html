@@ -1,0 +1,21 @@
+{%- assign p = site.analytics.provider -%}
+
+{%- if p == "goatcounter" and site.analytics.goatcounter_code != "" -%}
+  <script data-goatcounter="https://{{ site.analytics.goatcounter_code }}.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+{%- endif -%}
+
+{%- if p == "plausible" and site.analytics.plausible_domain != "" -%}
+  <script defer data-domain="{{ site.analytics.plausible_domain }}"
+          src="https://plausible.io/js/script.js"></script>
+{%- endif -%}
+
+{%- if p == "cloudflare" and site.analytics.cloudflare_token != "" -%}
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "{{ site.analytics.cloudflare_token }}"}'></script>
+{%- endif -%}
+
+{%- if p == "umami" and site.analytics.umami_website_id != "" -%}
+  <script defer src="https://{{ site.analytics.umami_host }}/script.js"
+          data-website-id="{{ site.analytics.umami_website_id }}"></script>
+{%- endif -%}

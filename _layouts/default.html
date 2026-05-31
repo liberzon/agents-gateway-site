@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {% seo %}
+
+  <link rel="canonical" href="{{ page.url | absolute_url }}" />
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+
+  {%- comment -%} Structured data — SoftwareSourceCode for the project {%- endcomment -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "Agents Gateway",
+    "description": {{ site.description | jsonify }},
+    "codeRepository": "https://github.com/liberzon/agents-gateway",
+    "programmingLanguage": "Python",
+    "runtimePlatform": "Python 3.11+",
+    "license": "https://opensource.org/licenses/MIT",
+    "author": {
+      "@type": "Person",
+      "name": "Yair Liberzon",
+      "url": "https://github.com/liberzon"
+    },
+    "url": "{{ site.url }}",
+    "image": "{{ site.url }}/assets/og-image.png",
+    "keywords": [
+      "AI agents",
+      "LLM",
+      "FastAPI",
+      "Agno",
+      "agent framework",
+      "open source",
+      "agent orchestration",
+      "supervisor pattern",
+      "OAuth toolkits"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Agents Gateway",
+    "url": "{{ site.url }}",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://github.com/liberzon/agents-gateway/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  {%- include analytics.html -%}
+</head>
+<body>
+  <header class="site-header">
+    <nav class="container">
+      <a href="/" class="brand">Agents Gateway</a>
+      <div class="nav-links">
+        <a href="/#quickstart">Quickstart</a>
+        <a href="/docs/">Docs</a>
+        <a href="/deploy/">Deploy</a>
+        <a href="https://github.com/liberzon/agents-gateway" rel="noopener">GitHub</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        <a href="https://github.com/liberzon/agents-gateway">Source</a> &middot;
+        <a href="https://github.com/liberzon/agents-gateway-deploy">Deploy artifacts</a> &middot;
+        <a href="/llms.txt">llms.txt</a> &middot;
+        MIT &copy; {{ site.time | date: "%Y" }} Yair Liberzon
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,105 @@
+# Agents Gateway
+
+> Production FastAPI gateway for AI agents, built on top of Agno. MIT-licensed. Deploy in one click; scale to your own Kubernetes when you outgrow it.
+
+## What it is
+
+Agents Gateway is an open-source service layer on top of [Agno](https://github.com/agno-ai/agno). Agno provides the agent primitives (LLM calls, tools, sessions); the gateway provides the HTTP API, multi-tenancy, persistence, supervisor orchestration, and operational surface. Source: <https://github.com/liberzon/agents-gateway> (MIT). Container image: `ghcr.io/liberzon/agents-gateway:latest` (multi-arch).
+
+## Features
+
+- **Agent management** — Create, configure, version, and serve agents via a REST API. Per-agent prompts, models, toolkits, knowledge.
+- **Teams** — Compose agents into teams for coordinated multi-agent workflows. Coordinate or supervisor modes.
+- **Supervisor platform** — Job queue, approval flows, containerized workers (Docker & K8s). Production-ready execution.
+- **Toolkits** — Pre-built OAuth-managed integrations for Calendar, Email, Contacts, and Drive — Google & Microsoft. Confirmation-based workflow with auto-refresh.
+- **Prompts service** — Versioned prompt templates with pluggable storage (PostgreSQL or external prompts service). Set via `PROMPT_STORAGE_BACKEND`.
+- **Knowledge base** — Per-tenant document indexing on Qdrant. Tag and retrieve at agent or team scope.
+- **Observability** — Pluggable OpenTelemetry tracing and logging. `console`, `otlp`, `sentry`, `logtail`.
+- **One-click deploy** — Render, Railway, Koyeb buttons backed by a prebuilt multi-arch image on GHCR. Kubernetes Kustomize manifests included. Cloud manifests for AWS (ECS + CloudFormation), Azure (Container Apps + Bicep), GCP (Cloud Run).
+
+## Quickstart
+
+```sh
+git clone https://github.com/liberzon/agents-gateway
+cd agents-gateway
+
+# Start PostgreSQL + Qdrant (seeds demo agents automatically)
+docker compose up -d
+
+# Set up Python environment
+./scripts/dev_setup.sh && source .venv/bin/activate
+
+# Start the API
+./scripts/start_server.sh
+```
+
+Then chat with the demo agent:
+
+```sh
+export GOOGLE_API_KEY="your-gemini-key"
+
+curl -X POST http://localhost:8000/v2/agents/demo-assistant/chat \
+  -H 'Content-Type: application/json' \
+  -d '{"message":"What can you help me with?","user_id":"u1","session_id":"s1","timezone":"UTC","locale":"en","stream":false}'
+```
+
+Interactive OpenAPI docs at `http://localhost:8000/docs`.
+
+## API surface
+
+All endpoints under `/v2/*`, authed via `X-API-Key`. Admin endpoints under `/admin/*` via `X-Admin-Secret`. Set `AUTH_DISABLED=true` to bypass for local dev.
+
+| Resource | Endpoint | Purpose |
+|---|---|---|
+| Agents | `GET/POST /v2/agents` | CRUD agents |
+| Agent chat | `POST /v2/agents/{id}/chat` | Chat (stream or non-stream) |
+| Teams | `GET/POST /v2/teams` | CRUD teams |
+| Team run | `POST /v2/teams/{id}/runs` | Execute a team |
+| Knowledge | `GET/POST /v2/knowledge/{tenant_id}` | Per-tenant knowledge |
+| Tokens | `GET/POST /v2/users/{user_id}/tokens` | OAuth token storage |
+| Prompts | `GET/POST /v2/prompts` | Versioned prompts |
+| Skills | `GET/POST /v2/skills` | Reusable skills |
+| Engines | `GET/POST /v2/engines` | Supervisor engines |
+| Targets | `GET/POST /v2/targets` | Supervisor targets |
+| Approvals | `GET/POST /v2/approvals` | Pending approval review |
+
+## Deploy
+
+Three one-click providers, all backed by the prebuilt image `ghcr.io/liberzon/agents-gateway:latest`:
+
+- **Render** — `render.yaml` (image-based). Web Service plan: starter (~$7/mo prorated). Free Postgres.
+- **Railway** — `railway.toml` + wrapper `Dockerfile`. $5/mo trial credit. Reference variables for Postgres auto-fill.
+- **Koyeb** — `koyeb.yaml` (image-based). Nano instance free tier. Requires Koyeb secrets pre-created.
+
+Kubernetes via Kustomize: `gh workflow run deploy-k8s.yml -f project=agents-gateway -f environment=production -f image_tag=latest`. Requires `KUBECONFIG_AGENTS_GATEWAY` secret.
+
+Cloud-specific manifests live in [`agents-gateway/deploy/`](https://github.com/liberzon/agents-gateway/tree/main/deploy): AWS, Azure, GCP, generic Compose & K8s.
+
+Full per-platform smoke-test playbook: <https://github.com/liberzon/agents-gateway-deploy/blob/main/DEPLOY_TEST_PLAN.md>.
+
+## Architecture
+
+Single-process FastAPI service. Stateless by default; state lives in Postgres (agents, teams, sessions, prompts, tokens, queue, knowledge metadata) and Qdrant (knowledge vectors). LLM calls go to the configured provider (OpenAI, Anthropic, Gemini, etc.) through Agno.
+
+Supervisor workers run as separate containers (Docker or K8s pods), pulling jobs from an in-Postgres queue. Workers can be CPU-only or GPU-backed depending on workload.
+
+## Configuration
+
+| Variable | Required | Purpose |
+|---|---|---|
+| `DB_HOST` / `DB_PORT` / `DB_USER` / `DB_PASS` / `DB_DATABASE` | Yes | Postgres connection |
+| `ADMIN_SECRET` | Yes (prod) | Admin endpoint auth |
+| `GOOGLE_API_KEY` / `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` | ≥1 | LLM provider |
+| `QDRANT_URL` | No | Vector DB for knowledge |
+| `PROMPT_STORAGE_BACKEND` | No | `postgres` (default) or `service` |
+| `OTEL_TRACING_BACKEND` | No | `console`, `otlp`, `sentry` |
+| `OTEL_LOGGING_BACKEND` | No | `console`, `otlp`, `logtail` |
+| `WAIT_FOR_DB` | No | `true` to wait for Postgres before starting |
+| `AUTH_DISABLED` | No | Dev only |
+
+## License & support
+
+- License: MIT — <https://github.com/liberzon/agents-gateway/blob/main/LICENSE>
+- Issues: <https://github.com/liberzon/agents-gateway/issues>
+- Agno docs: <https://docs.agno.com>
+- Maintainer: Yair Liberzon — <https://github.com/liberzon>

@@ -1,0 +1,76 @@
+name: Build & deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Pull detailed API docs from agents-gateway-docs
+        run: |
+          set -euo pipefail
+          git clone --depth 1 https://github.com/liberzon/agents-gateway-docs.git _api-docs-src
+          mkdir -p _docs
+          # Skip Sphinx-only files (conf.py, Makefile, _build/, API_DOCUMENTATION.md is huge — include separately)
+          for f in _api-docs-src/*.md; do
+            name=$(basename "$f")
+            slug="${name%.md}"
+            # Skip the all-in-one mega-file; we want per-topic pages for clean URLs/SEO
+            if [ "$slug" = "API_DOCUMENTATION" ]; then
+              continue
+            fi
+            # Skip the docs-repo index.md — we have our own /docs/ page
+            if [ "$slug" = "index" ]; then
+              continue
+            fi
+            # Pretty title: "api-agents" → "API Agents"
+            title=$(echo "$slug" | sed -E 's/-/ /g' | awk '{for(i=1;i<=NF;i++)$i=toupper(substr($i,1,1)) substr($i,2)} 1')
+            {
+              echo "---"
+              echo "layout: default"
+              echo "title: \"$title — Agents Gateway docs\""
+              echo "permalink: /docs/$slug/"
+              echo "---"
+              echo ""
+            } > "_docs/$name"
+            cat "$f" >> "_docs/$name"
+          done
+          echo "Synced $(ls _docs | wc -l) detailed doc pages."
+
+      - name: Build site
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
