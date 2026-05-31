@@ -6,7 +6,7 @@ description: >-
   execution platform, agent teams, prompt versioning, OAuth token storage,
   and pre-built toolkits for Calendar, Email, Contacts, and Drive (Google &
   Microsoft). MIT-licensed. Deploy in one click to Render, Railway, or Koyeb.
-url: "https://agents-gateway.dev"
+url: "https://agentsgateway.dev"
 baseurl: ""
 repository: liberzon/agents-gateway
 github_username: liberzon
@@ -51,7 +51,7 @@ analytics:
   goatcounter_code: agents-gateway
 
   # Plausible — domain you registered in Plausible (uses official cloud)
-  plausible_domain: agents-gateway.dev
+  plausible_domain: agentsgateway.dev
 
   # Cloudflare Web Analytics — beacon token from CF dashboard
   cloudflare_token: ""

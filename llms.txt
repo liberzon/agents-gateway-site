@@ -3,34 +3,34 @@
 > Production FastAPI gateway for AI agents, built on top of [Agno](https://github.com/agno-ai/agno). MIT-licensed. Includes supervisor/worker execution, agent teams, prompt versioning, OAuth toolkits (Calendar, Email, Contacts, Drive — Google and Microsoft), per-tenant knowledge base on Qdrant, and one-click deploy to Render, Railway, and Koyeb. Image: `ghcr.io/liberzon/agents-gateway:latest`.
 
 ## Site
-- [Landing page](https://agents-gateway.dev/): tagline, features, deploy buttons, quickstart
-- [Docs](https://agents-gateway.dev/docs/): architecture diagram, API reference, configuration, toolkits, supervisor platform, database schema, observability
-- [Deploy guide](https://agents-gateway.dev/deploy/): one-click platforms, Kubernetes, cloud-specific manifests, smoke test, operational notes
+- [Landing page](https://agentsgateway.dev/): tagline, features, deploy buttons, quickstart
+- [Docs](https://agentsgateway.dev/docs/): architecture diagram, API reference, configuration, toolkits, supervisor platform, database schema, observability
+- [Deploy guide](https://agentsgateway.dev/deploy/): one-click platforms, Kubernetes, cloud-specific manifests, smoke test, operational notes
 
 ## Detailed reference (auto-synced from agents-gateway-docs)
-- [Overview](https://agents-gateway.dev/docs/overview/): architecture and key concepts
-- [Quickstart](https://agents-gateway.dev/docs/quickstart/): setup and first API call
-- [Authentication](https://agents-gateway.dev/docs/authentication/): API keys, admin auth, dev mode
-- [Configuration](https://agents-gateway.dev/docs/configuration/): environment variables
-- [API: Agents](https://agents-gateway.dev/docs/api-agents/): agent CRUD and chat endpoints
-- [API: Teams](https://agents-gateway.dev/docs/api-teams/): team coordinate + supervisor modes
-- [API: Prompts](https://agents-gateway.dev/docs/api-prompts/): versioned prompt templates
-- [API: Knowledge](https://agents-gateway.dev/docs/api-knowledge/): tenant + collection-level knowledge
-- [API: Tokens](https://agents-gateway.dev/docs/api-tokens/): OAuth token storage with auto-refresh
-- [API: Skills](https://agents-gateway.dev/docs/api-skills/): reusable skill definitions
-- [API: Engines](https://agents-gateway.dev/docs/api-engines/): supervisor execution engine registry
-- [API: Targets](https://agents-gateway.dev/docs/api-targets/): supervisor run target registry
-- [API: Approvals](https://agents-gateway.dev/docs/api-approvals/): HITL approval flow
-- [API: Admin](https://agents-gateway.dev/docs/api-admin/): cache, API keys, background tasks
-- [Supervisor platform](https://agents-gateway.dev/docs/supervisor-platform/): architecture, classification, worker types
-- [Agent packs](https://agents-gateway.dev/docs/agent-packs/): YAML pack format, CLI
-- [Remote agent](https://agents-gateway.dev/docs/remote-agent/): Docker/K8s container execution
-- [Toolkits](https://agents-gateway.dev/docs/toolkits/): Calendar, Email, Drive, ClaudeCode, ManagedAgents
-- [Models reference](https://agents-gateway.dev/docs/models-reference/): Pydantic request/response models
-- [Database schema](https://agents-gateway.dev/docs/database-schema/): all tables
-- [LLM models](https://agents-gateway.dev/docs/llm-models/): supported OpenAI, Gemini, Claude variants
-- [Deployment](https://agents-gateway.dev/docs/deployment/): docker-compose, production setup
-- [Development](https://agents-gateway.dev/docs/development/): dev setup, validation, testing
+- [Overview](https://agentsgateway.dev/docs/overview/): architecture and key concepts
+- [Quickstart](https://agentsgateway.dev/docs/quickstart/): setup and first API call
+- [Authentication](https://agentsgateway.dev/docs/authentication/): API keys, admin auth, dev mode
+- [Configuration](https://agentsgateway.dev/docs/configuration/): environment variables
+- [API: Agents](https://agentsgateway.dev/docs/api-agents/): agent CRUD and chat endpoints
+- [API: Teams](https://agentsgateway.dev/docs/api-teams/): team coordinate + supervisor modes
+- [API: Prompts](https://agentsgateway.dev/docs/api-prompts/): versioned prompt templates
+- [API: Knowledge](https://agentsgateway.dev/docs/api-knowledge/): tenant + collection-level knowledge
+- [API: Tokens](https://agentsgateway.dev/docs/api-tokens/): OAuth token storage with auto-refresh
+- [API: Skills](https://agentsgateway.dev/docs/api-skills/): reusable skill definitions
+- [API: Engines](https://agentsgateway.dev/docs/api-engines/): supervisor execution engine registry
+- [API: Targets](https://agentsgateway.dev/docs/api-targets/): supervisor run target registry
+- [API: Approvals](https://agentsgateway.dev/docs/api-approvals/): HITL approval flow
+- [API: Admin](https://agentsgateway.dev/docs/api-admin/): cache, API keys, background tasks
+- [Supervisor platform](https://agentsgateway.dev/docs/supervisor-platform/): architecture, classification, worker types
+- [Agent packs](https://agentsgateway.dev/docs/agent-packs/): YAML pack format, CLI
+- [Remote agent](https://agentsgateway.dev/docs/remote-agent/): Docker/K8s container execution
+- [Toolkits](https://agentsgateway.dev/docs/toolkits/): Calendar, Email, Drive, ClaudeCode, ManagedAgents
+- [Models reference](https://agentsgateway.dev/docs/models-reference/): Pydantic request/response models
+- [Database schema](https://agentsgateway.dev/docs/database-schema/): all tables
+- [LLM models](https://agentsgateway.dev/docs/llm-models/): supported OpenAI, Gemini, Claude variants
+- [Deployment](https://agentsgateway.dev/docs/deployment/): docker-compose, production setup
+- [Development](https://agentsgateway.dev/docs/development/): dev setup, validation, testing
 
 ## Source
 - [Repository (app)](https://github.com/liberzon/agents-gateway): FastAPI + Agno service, Python 3.11+, MIT
@@ -44,4 +44,4 @@
 - [Agno](https://github.com/agno-ai/agno): the underlying agent framework
 
 ## Optional
-- [llms-full.txt](https://agents-gateway.dev/llms-full.txt): full content inlined for LLM context-window ingestion
+- [llms-full.txt](https://agentsgateway.dev/llms-full.txt): full content inlined for LLM context-window ingestion

@@ -5,13 +5,13 @@
 
 Public landing site and documentation portal for [**Agents Gateway**](https://github.com/liberzon/agents-gateway).
 
-Built as a Jekyll site, served by GitHub Pages at <https://agents-gateway.dev>.
+Built as a Jekyll site, served by GitHub Pages at <https://agentsgateway.dev>.
 
 This repo is the marketing / SEO / LLM-discoverability surface. The app itself lives in [`liberzon/agents-gateway`](https://github.com/liberzon/agents-gateway); deploy artifacts in [`liberzon/agents-gateway-deploy`](https://github.com/liberzon/agents-gateway-deploy).
 
 ## Why a dedicated repo
 
-- **Discoverability** — a real domain (`agents-gateway.dev`) outranks `*.github.io` paths in Google + LLM citations.
+- **Discoverability** — a real domain (`agentsgateway.dev`) outranks `*.github.io` paths in Google + LLM citations.
 - **LLM indexing** — ships `llms.txt`, `llms-full.txt`, JSON-LD `SoftwareSourceCode`, and an AI-crawler-friendly `robots.txt` (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, …).
 - **Independent cadence** — copy + meta tweaks don't show up as noise in the app repo's commit graph.
 
@@ -55,18 +55,18 @@ Configured in `_config.yml` under `analytics:`. Supported providers:
 | Provider | Cost | Cookies / consent | Setup |
 |---|---|---|---|
 | **GoatCounter** (default) | Free | None | Sign up at [goatcounter.com](https://www.goatcounter.com), put your subdomain prefix in `goatcounter_code` |
-| Plausible | Paid ($9+/mo) | None | Add `agents-gateway.dev` in Plausible dashboard, set `plausible_domain` |
-| Cloudflare Web Analytics | Free | None | Enable on `agents-gateway.dev` in CF dashboard, paste the beacon token |
+| Plausible | Paid ($9+/mo) | None | Add `agentsgateway.dev` in Plausible dashboard, set `plausible_domain` |
+| Cloudflare Web Analytics | Free | None | Enable on `agentsgateway.dev` in CF dashboard, paste the beacon token |
 | Umami | Free (self-host) or paid (cloud) | None | Create a website in Umami, set `umami_host` + `umami_website_id` |
 
 Set `analytics.provider: ""` to disable tracking entirely.
 
 ## Deploy
 
-Push to `main` → the `pages.yml` workflow builds the site and publishes it. To point a custom domain (`agents-gateway.dev`) at GitHub Pages:
+Push to `main` → the `pages.yml` workflow builds the site and publishes it. To point a custom domain (`agentsgateway.dev`) at GitHub Pages:
 
-1. Add a `CNAME` record at your DNS provider: `agents-gateway.dev → liberzon.github.io`
-2. In repo Settings → Pages: set the custom domain to `agents-gateway.dev`.
+1. Add a `CNAME` record at your DNS provider: `agentsgateway.dev → liberzon.github.io`
+2. In repo Settings → Pages: set the custom domain to `agentsgateway.dev`.
 3. Wait for the cert to provision (~10 min).
 
 ## Submission checklist (post-launch)
