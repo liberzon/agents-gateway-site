@@ -25,7 +25,7 @@ Deploy in one click; scale to your own Kubernetes when you outgrow it.
     <img alt="Deploy to Render" src="https://render.com/images/deploy-to-render-button.svg">
   </a>
   <a href="https://app.koyeb.com/deploy?type=git&repository=github.com/liberzon/agents-gateway-deploy" rel="noopener">
-    <img alt="Deploy to Koyeb" src="https://www.koyeb.com/static/images/deploy/button.svg">
+    <img alt="Deploy to Koyeb" src="https://img.shields.io/badge/Deploy%20to-Koyeb-121212?style=for-the-badge&logo=koyeb&logoColor=white">
   </a>
 </div>
 
