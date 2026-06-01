@@ -70,10 +70,10 @@
     <nav class="container">
       <a href="/" class="brand">Agents Gateway</a>
       <div class="nav-links">
-        <a href="/#quickstart">Quickstart</a>
-        <a href="/docs/">Docs</a>
-        <a href="/deploy/">Deploy</a>
-        <a href="https://github.com/liberzon/agents-gateway" rel="noopener">GitHub</a>
+        <a href="/#quickstart" data-goatcounter-click="click_quickstart" data-goatcounter-title="Nav — Quickstart">Quickstart</a>
+        <a href="/docs/" data-goatcounter-click="click_docs" data-goatcounter-title="Nav — Docs">Docs</a>
+        <a href="/deploy/" data-goatcounter-click="click_deploy" data-goatcounter-title="Nav — Deploy">Deploy</a>
+        <a href="https://github.com/liberzon/agents-gateway" rel="noopener" data-goatcounter-click="click_github_star" data-goatcounter-title="Nav — GitHub">GitHub ★</a>
       </div>
     </nav>
   </header>
@@ -92,5 +92,19 @@
       </p>
     </div>
   </footer>
+
+  <script>
+    // Wire data-goatcounter-click attributes to GoatCounter events.
+    // Degrades silently if GoatCounter is blocked / not loaded.
+    document.addEventListener('click', function (e) {
+      var el = e.target.closest('[data-goatcounter-click]');
+      if (!el || typeof window.goatcounter === 'undefined' || typeof window.goatcounter.count !== 'function') return;
+      window.goatcounter.count({
+        path: el.getAttribute('data-goatcounter-click'),
+        title: el.getAttribute('data-goatcounter-title') || el.textContent.trim().slice(0, 80),
+        event: true,
+      });
+    });
+  </script>
 </body>
 </html>

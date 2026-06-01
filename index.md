@@ -1,72 +1,70 @@
 ---
 title: "Agents Gateway — open-source FastAPI gateway for AI agents"
-description: "Production FastAPI gateway for AI agents on top of Agno. Supervisor/worker execution, agent teams, prompt versioning, OAuth toolkits. MIT. One-click deploy."
+description: "Open-source FastAPI gateway for serving, orchestrating, and deploying AI agents. Multi-agent teams, OAuth toolkits, observability, one-click deploy. Built on Agno. MIT licensed."
 ---
+
+<section class="hero">
 
 # Agents Gateway
 
 <p class="lead">
-A production-ready, MIT-licensed FastAPI service for serving, orchestrating,
-and managing AI agents — built on <a href="https://github.com/agno-ai/agno">Agno</a>.
-Deploy in one click; scale to your own Kubernetes when you outgrow it.
+Open-source <strong>FastAPI gateway for AI agents</strong> — serve, orchestrate, and deploy production AI agents on top of <a href="https://github.com/agno-ai/agno">Agno</a>. MIT licensed.
 </p>
 
-<div class="cta-row">
-  <a class="btn" href="#quickstart">Quickstart</a>
-  <a class="btn secondary" href="/docs/">Docs</a>
-  <a class="btn secondary" href="https://github.com/liberzon/agents-gateway" rel="noopener">GitHub</a>
+<div class="cta-row primary">
+  <a class="btn" href="#quickstart" data-goatcounter-click="click_quickstart" data-goatcounter-title="Hero — Quickstart">⚡ Quickstart</a>
+  <a class="btn" href="https://github.com/liberzon/agents-gateway" rel="noopener" data-goatcounter-click="click_github_star" data-goatcounter-title="Hero — Star on GitHub">⭐ Star on GitHub</a>
+  <a class="btn secondary" href="/docs/" data-goatcounter-click="click_docs" data-goatcounter-title="Hero — Read the docs">📖 Read the docs</a>
 </div>
 
-<div class="deploy-buttons">
-  <a href="https://railway.app/template?template=https://github.com/liberzon/agents-gateway-deploy" rel="noopener">
-    <img alt="Deploy on Railway" src="https://railway.app/button.svg">
-  </a>
-  <a href="https://render.com/deploy?repo=https://github.com/liberzon/agents-gateway-deploy" rel="noopener">
-    <img alt="Deploy to Render" src="https://render.com/images/deploy-to-render-button.svg">
-  </a>
-  <a href="https://app.koyeb.com/deploy?type=git&repository=github.com/liberzon/agents-gateway-deploy" rel="noopener">
-    <img alt="Deploy to Koyeb" src="https://img.shields.io/badge/Deploy%20to-Koyeb-121212?style=for-the-badge&logo=koyeb&logoColor=white">
-  </a>
+<div class="trust-badges">
+  <a href="https://github.com/liberzon/agents-gateway/stargazers" rel="noopener" data-goatcounter-click="click_github_star" data-goatcounter-title="Trust badge — GitHub stars"><img alt="GitHub stars" src="https://img.shields.io/github/stars/liberzon/agents-gateway?style=social"></a>
+  <a href="https://github.com/liberzon/agents-gateway/blob/main/LICENSE" rel="noopener"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-yellow"></a>
+  <img alt="Python 3.11+" src="https://img.shields.io/badge/python-3.11+-blue">
+  <a href="https://github.com/liberzon/agents-gateway/pkgs/container/agents-gateway" rel="noopener"><img alt="GHCR image" src="https://img.shields.io/badge/image-ghcr.io%2Fliberzon%2Fagents--gateway-2496ED?logo=docker&logoColor=white"></a>
+  <img alt="Built on Agno" src="https://img.shields.io/badge/built%20on-Agno-7c9cff">
 </div>
 
-## What you get
+</section>
+
+## The problem
+
+Most production AI agents start as Python scripts that work fine in a notebook. **Shipping them to production is a different problem entirely**: API auth, per-user OAuth tokens, prompt versioning, multi-tenant isolation, job queues, approval flows, observability. Building all of that for every project doesn't scale.
+
+Agents Gateway is the runtime that handles those layers, so your agent code stays focused on the agent.
+
+## Why Agents Gateway? {#why}
+
+A focused production scaffold around the Agno agent framework.
 
 <div class="features">
   <div class="feature">
-    <h3>Agent management</h3>
-    <p>Create, configure, version, and serve agents via a REST API. Per-agent prompts, models, toolkits, knowledge.</p>
+    <h3>REST API for agents</h3>
+    <p>Create, configure, version, and chat with agents over HTTP. Per-user sessions, streaming or non-streaming, multi-tenant by design.</p>
   </div>
   <div class="feature">
-    <h3>Teams</h3>
-    <p>Compose agents into teams for coordinated multi-agent workflows. Coordinate or supervisor modes.</p>
+    <h3>Multi-agent teams</h3>
+    <p>Compose agents into teams with <strong>coordinate</strong> or <strong>supervisor</strong> execution modes. Job queues, approval flows, containerized workers.</p>
   </div>
   <div class="feature">
-    <h3>Supervisor platform</h3>
-    <p>Job queue, approval flows, containerized workers (Docker &amp; K8s). Production-ready execution.</p>
+    <h3>OAuth toolkits</h3>
+    <p>Plug Gmail, Calendar, Contacts, and Drive (Google + Microsoft) into any agent with confirmation workflows and auto-refresh.</p>
   </div>
   <div class="feature">
-    <h3>Toolkits</h3>
-    <p>Pre-built OAuth-managed integrations for Calendar, Email, Contacts, and Drive — Google &amp; Microsoft.</p>
-  </div>
-  <div class="feature">
-    <h3>Prompts service</h3>
-    <p>Versioned prompt templates with pluggable storage (PostgreSQL, LangSmith). Backend-aware.</p>
-  </div>
-  <div class="feature">
-    <h3>Knowledge base</h3>
-    <p>Per-tenant document indexing on Qdrant. Tag and retrieve at agent or team scope.</p>
-  </div>
-  <div class="feature">
-    <h3>Observability</h3>
-    <p>Pluggable OpenTelemetry tracing and logging. Console, OTLP, Sentry, Logtail out of the box.</p>
+    <h3>Production-ready ops</h3>
+    <p>OpenTelemetry tracing, Sentry, OTLP, Logtail. Versioned prompts. Per-tenant knowledge base on Qdrant.</p>
   </div>
   <div class="feature">
     <h3>One-click deploy</h3>
-    <p>Render, Railway, Koyeb buttons. Pre-built image on GHCR (linux/amd64 + arm64). K8s manifests included.</p>
+    <p>Render, Railway, Koyeb buttons backed by a prebuilt multi-arch image on GHCR. K8s manifests + AWS/Azure/GCP recipes included.</p>
+  </div>
+  <div class="feature">
+    <h3>Open by default</h3>
+    <p>MIT licensed. No vendor lock-in. Bring your own model provider (OpenAI, Anthropic, Gemini, …) and your own database.</p>
   </div>
 </div>
 
-## Quickstart {#quickstart}
+## Quickstart — deploy in 5 minutes {#quickstart}
 
 ```sh
 git clone https://github.com/liberzon/agents-gateway
@@ -75,60 +73,96 @@ cd agents-gateway
 # Start PostgreSQL + Qdrant (seeds demo agents automatically)
 docker compose up -d
 
-# Set up Python environment
+# Set up Python environment + start the API
 ./scripts/dev_setup.sh && source .venv/bin/activate
-
-# Start the API
 ./scripts/start_server.sh
 ```
 
-Then chat with a demo agent:
+Then chat with the demo agent:
 
 ```sh
 export GOOGLE_API_KEY="your-gemini-key"
 
 curl -X POST http://localhost:8000/v2/agents/demo-assistant/chat \
   -H 'Content-Type: application/json' \
-  -d '{"message":"What can you help me with?","user_id":"u1","session_id":"s1","timezone":"UTC","locale":"en","stream":false}'
+  -d '{"message":"Hi","user_id":"u1","session_id":"s1","stream":false}'
 ```
 
-Interactive API docs at `http://localhost:8000/docs`.
+Interactive API docs at `http://localhost:8000/docs`. Full [quickstart guide](/docs/#quickstart) and [API reference](/docs/#api) →
 
-## Deploy
+### Or deploy to the cloud with one click
 
-Three one-click providers backed by a prebuilt multi-arch image:
+<div class="deploy-buttons">
+  <a href="https://railway.app/template?template=https://github.com/liberzon/agents-gateway-deploy" rel="noopener" data-goatcounter-click="click_deploy" data-goatcounter-title="Deploy on Railway">
+    <img alt="Deploy on Railway" src="https://railway.app/button.svg">
+  </a>
+  <a href="https://render.com/deploy?repo=https://github.com/liberzon/agents-gateway-deploy" rel="noopener" data-goatcounter-click="click_deploy" data-goatcounter-title="Deploy to Render">
+    <img alt="Deploy to Render" src="https://render.com/images/deploy-to-render-button.svg">
+  </a>
+  <a href="https://app.koyeb.com/deploy?type=git&repository=github.com/liberzon/agents-gateway-deploy" rel="noopener" data-goatcounter-click="click_deploy" data-goatcounter-title="Deploy to Koyeb">
+    <img alt="Deploy to Koyeb" src="https://img.shields.io/badge/Deploy%20to-Koyeb-121212?style=for-the-badge&logo=koyeb&logoColor=white">
+  </a>
+</div>
 
-| Provider | Config |
-|---|---|
-| [Render](https://render.com/deploy?repo=https://github.com/liberzon/agents-gateway-deploy) | `render.yaml` — image-based |
-| [Railway](https://railway.app/template?template=https://github.com/liberzon/agents-gateway-deploy) | `railway.toml` — wrapper Dockerfile |
-| [Koyeb](https://app.koyeb.com/deploy?type=git&repository=github.com/liberzon/agents-gateway-deploy) | `koyeb.yaml` — image-based |
+## Who is this for? {#who}
 
-Self-hosters can run the Kustomize-based [K8s manifests](https://github.com/liberzon/agents-gateway-deploy/tree/main/k8s). Cloud-specific manifests for AWS, Azure, and GCP live in [`agents-gateway/deploy/`](https://github.com/liberzon/agents-gateway/tree/main/deploy).
+<div class="audience">
+  <div class="persona">
+    <h3>AI engineers</h3>
+    <p>Building production agent systems and tired of stitching FastAPI + Postgres + Qdrant + OAuth boilerplate for every project.</p>
+  </div>
+  <div class="persona">
+    <h3>Startups</h3>
+    <p>Shipping agent APIs and want a permissive, MIT-licensed runtime they own — not a managed service with usage-based pricing.</p>
+  </div>
+  <div class="persona">
+    <h3>Platform teams</h3>
+    <p>Standing up an internal agent platform with multi-tenant isolation, approvals, and observability across many agent use cases.</p>
+  </div>
+  <div class="persona">
+    <h3>Agno users</h3>
+    <p>Already building on Agno and want the missing production layer — sessions, tokens, prompts, queues — without re-inventing it.</p>
+  </div>
+</div>
 
-Full per-platform playbook: [Deploy guide](/deploy/).
+## Deploy options {#deploy}
 
-## Project links
+| Path | Best for | Config |
+|---|---|---|
+| **Render** | Easiest first deploy | [`render.yaml`](https://github.com/liberzon/agents-gateway-deploy/blob/main/render.yaml) (image-based) |
+| **Railway** | Best Postgres UX | [`railway.toml`](https://github.com/liberzon/agents-gateway-deploy/blob/main/railway.toml) |
+| **Koyeb** | Free nano tier | [`koyeb.yaml`](https://github.com/liberzon/agents-gateway-deploy/blob/main/koyeb.yaml) |
+| **Kubernetes** | Self-hosting / scale | [Kustomize manifests](https://github.com/liberzon/agents-gateway-deploy/tree/main/k8s) |
+| **AWS / Azure / GCP** | Cloud-native | [`deploy/`](https://github.com/liberzon/agents-gateway/tree/main/deploy) (ECS, Container Apps, Cloud Run) |
 
-- **Source code** — [github.com/liberzon/agents-gateway](https://github.com/liberzon/agents-gateway)
-- **Deploy artifacts** — [github.com/liberzon/agents-gateway-deploy](https://github.com/liberzon/agents-gateway-deploy)
-- **Container image** — `ghcr.io/liberzon/agents-gateway:latest`
-- **License** — [MIT](https://github.com/liberzon/agents-gateway/blob/main/LICENSE)
-- **Issues** — [Report a bug](https://github.com/liberzon/agents-gateway/issues)
+Full per-platform playbook with smoke tests and teardown: [Deploy guide](/deploy/) →
+
+## Get started {#cta}
+
+<div class="cta-row final">
+  <a class="btn" href="https://github.com/liberzon/agents-gateway" rel="noopener" data-goatcounter-click="click_github_star" data-goatcounter-title="Footer CTA — Star on GitHub">⭐ Star on GitHub</a>
+  <a class="btn" href="/docs/" data-goatcounter-click="click_docs" data-goatcounter-title="Footer CTA — Read the docs">📖 Read the docs</a>
+  <a class="btn" href="/deploy/" data-goatcounter-click="click_deploy" data-goatcounter-title="Footer CTA — Deploy guide">🚀 Deploy in 5 min</a>
+</div>
+
+<p class="cta-note">MIT licensed. Contributions welcome — see <a href="https://github.com/liberzon/agents-gateway/issues" rel="noopener">issues</a> on GitHub.</p>
 
 ## FAQ
 
 ### Is it production-ready?
-Yes, with caveats. The gateway, supervisor, queue, and toolkits are covered by an integration test suite that runs against real Postgres/Qdrant on every push. Pick your own observability and harden the auth before shipping to users.
+Yes, with caveats. The gateway, supervisor, queue, and toolkits are covered by an integration test suite that runs against real Postgres + Qdrant on every push. Pick your own observability backend and harden the auth before shipping to end users.
 
 ### How does it relate to Agno?
-Agents Gateway is a service layer **on top of** [Agno](https://github.com/agno-ai/agno). Agno provides the agent primitives (LLM calls, tools, sessions); the gateway provides the HTTP API, multi-tenancy, persistence, supervisor orchestration, and operational surface.
+Agents Gateway is a service layer **on top of** [Agno](https://github.com/agno-ai/agno). Agno provides the agent primitives — LLM calls, tools, sessions. The gateway provides the HTTP API, multi-tenancy, persistence, supervisor orchestration, OAuth tokens, and operational surface.
+
+### Is it a request-routing API gateway like Kong?
+No. Despite the name, Agents Gateway is an **agent runtime**, not an HTTP request router. It serves and orchestrates AI agents over a REST API; it doesn't proxy traffic between services.
 
 ### What models does it support?
-Anything Agno supports — OpenAI, Anthropic, Gemini, plus other providers. Configure per agent via the `model` field.
+Anything Agno supports — OpenAI, Anthropic (Claude), Gemini, plus other providers via Agno. Configure per agent via the `model` field.
 
-### Does it need a vector DB?
-Qdrant is bundled via docker-compose for the knowledge base. If you don't use knowledge entries, you can run without it. The chat path doesn't depend on Qdrant.
+### Does it need a vector database?
+Qdrant is bundled via docker-compose for the knowledge base. If you're not using knowledge entries, you can run without it. The chat path doesn't depend on Qdrant.
 
-### Can I run it without docker?
-Yes — you need Postgres 14+ and (optionally) Qdrant reachable over the network. See [Deploy](/deploy/).
+### Can I run it without Docker?
+Yes — you need Postgres 14+ and (optionally) Qdrant reachable over the network. See the [deploy guide](/deploy/).
