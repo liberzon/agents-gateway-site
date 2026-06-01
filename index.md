@@ -3,7 +3,7 @@ title: "Agents Gateway — open-source FastAPI gateway for AI agents"
 description: "Open-source FastAPI gateway for serving, orchestrating, and deploying AI agents. Multi-agent teams, OAuth toolkits, observability, one-click deploy. Built on Agno. MIT licensed."
 ---
 
-<section class="hero">
+<section class="hero" markdown="1">
 
 # Agents Gateway
 
